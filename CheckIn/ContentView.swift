@@ -12,12 +12,21 @@ struct ContentView: View {
     @EnvironmentObject private var userController: UserController
     
     var body: some View {
-        VStack {
+        TabView {
             MessageSelect()
+                .tabItem {
+                    Label("Message Select", systemImage: "app.connected.to.app.below.fill")
+                }
             
-            ScrollView {
-                ListMessages()
-            }
+            ListMessages(messages: userController.recievedMessages)
+                .tabItem {
+                    Label("Recieved", systemImage: "clock.fill")
+                }
+            
+            ListMessages(messages: userController.sentMessages)
+                .tabItem {
+                    Label("Sent", systemImage: "paperplane.fill")
+                }
         }
     }
 }

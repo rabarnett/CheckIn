@@ -9,13 +9,12 @@ import SwiftUI
 
 struct ListMessages: View {
     
+    let messages: [Message]
     @EnvironmentObject private var userController: UserController
     
     var body: some View {
-        VStack {
-            Text(userController.user?.username ?? "ERROR")
-            
-            ForEach(userController.messages) { message in
+        ScrollView {
+            ForEach(messages) { message in
                 VStack {
                     Text(message.message)
                     Text(message.timestamp.description)
@@ -34,6 +33,6 @@ struct ListMessages: View {
 }
 
 #Preview {
-    ListMessages()
+    ListMessages(messages: [])
         .environmentObject(UserController())
 }

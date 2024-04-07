@@ -10,13 +10,15 @@ import Foundation
 final class UserController: DatabaseController {
     
     @Published private(set) var user: User?
-    @Published private(set) var messages: [Message] = []
+    @Published private(set) var recievedMessages: [Message] = []
+    @Published private(set) var sentMessages: [Message] = []
     
     override init() {
         super.init()
         do {
             try createStudentListener()
-            try createMessageListener()
+            try createRecievedMessageListener()
+            try createSentMessageListener()
         } catch {
             print("ERROR IN UserController() - \(error)")
         }
@@ -39,7 +41,7 @@ final class UserController: DatabaseController {
         }
     }
     
-    @MainActor private func createMessageListener() throws {
+    @MainActor private func createRecievedMessageListener() throws {
         guard !path.invalidPaths else { throw AppError.invalidPath }
         print(#function)
         
@@ -52,7 +54,27 @@ final class UserController: DatabaseController {
             }
             
             do {
-                self?.messages = try documents.map {try $0.data(as: Message.self)}
+                self?.recievedMessages = try documents.map {try $0.data(as: Message.self)}
+            } catch {
+                print("ERROR IN \(#function) - \(error)")
+            }
+        }
+    }
+    
+    @MainActor private func createSentMessageListener() throws {
+        guard !path.invalidPaths else { throw AppError.invalidPath }
+        print(#function)
+        
+        let messagesCollection = database.collection(path.to(.userMessagesSent)).order(by: "timestamp")
+        
+        messagesCollection.addSnapshotListener {[weak self] querySnapshot, error in
+            guard let documents = querySnapshot?.documents else {
+                print("ERROR IN \(#function) - Failed to get documents")
+                return
+            }
+            
+            do {
+                self?.sentMessages = try documents.map {try $0.data(as: Message.self)}
             } catch {
                 print("ERROR IN \(#function) - \(error)")
             }
