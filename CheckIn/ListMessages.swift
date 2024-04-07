@@ -15,20 +15,11 @@ struct ListMessages: View {
     var body: some View {
         ScrollView {
             ForEach(messages) { message in
-                VStack {
-                    Text(message.message)
-                    Text(message.timestamp.description)
-                    if(message.response) {
-                        Text("Seen")
-                            .foregroundStyle(.green)
-                    } else {
-                        Button("OK") {
-                            userController.confirmMessage(messageID: message.id)
-                        }
-                    }
-                }
+                MessageView(message: message)
             }
+            .frame(maxWidth: .infinity)
         }
+        .scrollIndicators(.hidden)
     }
 }
 

@@ -25,6 +25,7 @@
 		0A72F7CA2BC2513C00B121AC /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A72F7C92BC2513C00B121AC /* UserController.swift */; };
 		0A72F7CC2BC2521300B121AC /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A72F7CB2BC2521300B121AC /* AppError.swift */; };
 		0A72F7CE2BC2585B00B121AC /* ListMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A72F7CD2BC2585B00B121AC /* ListMessages.swift */; };
+		0A72F7D02BC27B9100B121AC /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A72F7CF2BC27B9100B121AC /* MessageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		0A72F7C92BC2513C00B121AC /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
 		0A72F7CB2BC2521300B121AC /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		0A72F7CD2BC2585B00B121AC /* ListMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListMessages.swift; sourceTree = "<group>"; };
+		0A72F7CF2BC27B9100B121AC /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 				0A72F7CB2BC2521300B121AC /* AppError.swift */,
 				0A72F7C12BC24EE800B121AC /* DatabasePath.swift */,
 				0A72F7A42BC244C600B121AC /* ContentView.swift */,
+				0A72F7CF2BC27B9100B121AC /* MessageView.swift */,
 				0A72F7CD2BC2585B00B121AC /* ListMessages.swift */,
 				0A72F7B72BC2482D00B121AC /* MessageButton.swift */,
 				0A72F7B92BC2486200B121AC /* MessageSelect.swift */,
@@ -190,6 +193,7 @@
 				0A72F7CA2BC2513C00B121AC /* UserController.swift in Sources */,
 				0A72F7C02BC24EC400B121AC /* DatabaseController.swift in Sources */,
 				0A72F7B82BC2482D00B121AC /* MessageButton.swift in Sources */,
+				0A72F7D02BC27B9100B121AC /* MessageView.swift in Sources */,
 				0A72F7BC2BC2487C00B121AC /* Alert.swift in Sources */,
 				0A72F7C62BC2509000B121AC /* User.swift in Sources */,
 				0A72F7C42BC2505F00B121AC /* Message.swift in Sources */,
