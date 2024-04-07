@@ -10,20 +10,27 @@ import SwiftUI
 struct ListMessages: View {
     
     let messages: [Message]
+    let title: String
     @EnvironmentObject private var userController: UserController
     
     var body: some View {
-        ScrollView {
-            ForEach(messages) { message in
-                MessageView(message: message)
+        VStack {
+            
+            Text(title)
+                .font(.system(size: 20, weight: .bold, design: .default))
+            
+            ScrollView {
+                ForEach(messages) { message in
+                    MessageView(message: message)
+                }
+                .frame(maxWidth: .infinity)
             }
-            .frame(maxWidth: .infinity)
+            .scrollIndicators(.hidden)
         }
-        .scrollIndicators(.hidden)
     }
 }
 
 #Preview {
-    ListMessages(messages: [])
+    ListMessages(messages: [], title: "Sent")
         .environmentObject(UserController())
 }

@@ -22,6 +22,11 @@ struct MessageButton: View {
                 .background {
                     RoundedRectangle(cornerRadius: 25)
                         .foregroundStyle(.yellow)
+                        .overlay {
+                            RoundedRectangle(cornerRadius: 25)
+                                .stroke(lineWidth: 3.0)
+                                .foregroundStyle(.black)
+                        }
                 }
         }
     }

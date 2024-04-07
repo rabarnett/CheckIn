@@ -18,14 +18,19 @@ struct ContentView: View {
                     Label("Message Select", systemImage: "app.connected.to.app.below.fill")
                 }
             
-            ListMessages(messages: userController.recievedMessages)
+            ListMessages(messages: userController.recievedMessages, title: "Recieved")
                 .tabItem {
                     Label("Recieved", systemImage: "clock.fill")
                 }
             
-            ListMessages(messages: userController.sentMessages)
+            ListMessages(messages: userController.sentMessages, title: "Sent")
                 .tabItem {
                     Label("Sent", systemImage: "paperplane.fill")
+                }
+            
+            RouteView()
+                .tabItem {
+                    Label("Map", systemImage: "map.fill")
                 }
         }
     }

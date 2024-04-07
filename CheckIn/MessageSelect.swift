@@ -12,15 +12,24 @@ struct MessageSelect: View {
     @EnvironmentObject private var userController: UserController
     
     var body: some View {
-        Grid {
-            GridRow {
-                MessageButton(message: "On my way")
-                MessageButton(message: "Arrived")
-            }
+        VStack {
             
-            GridRow {
-                MessageButton(message: "Leaving")
-                MessageButton(message: "SOS")
+            Text("Tether")
+                .font(.system(size: 50, weight: .bold, design: .default))
+            
+            Text("Check in with your friends")
+                .font(.callout)
+            
+            Grid {
+                GridRow {
+                    MessageButton(message: "On my way")
+                    MessageButton(message: "Arrived")
+                }
+                
+                GridRow {
+                    MessageButton(message: "Leaving")
+                    MessageButton(message: "SOS")
+                }
             }
         }
     }
