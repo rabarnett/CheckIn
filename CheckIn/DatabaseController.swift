@@ -44,6 +44,10 @@ class DatabaseController: ObservableObject {
         try database.document(path.to(document)).setData(from: data, merge: merge)
     }
     
+    func setData<T: Encodable>(toDocument document: String, data: T, merge: Bool) throws {
+        try database.document(document).setData(from: data, merge: merge)
+    }
+    
     func pushData<T: Encodable>(toCollection collection: DatabasePath.PathType, data: T) throws {
         try database.collection(path.to(collection)).addDocument(from: data)
     }

@@ -17,15 +17,21 @@ struct DatabasePath {
     /// The name of the collection that contains the users.
     private let usersCollection = "users"
     
-    private let messagesCollection = "messages"
+    private let messagesReceivedCollection = "messagesReceived"
+    
+    private let messagesSentCollection = "messagesSent"
     
     private let userDocument: String
     
     private let friendDocument: String
     
-    private let friendMessages: String
+    private let friendMessagesRecieved: String
     
-    private let userMessages: String
+    private let userMessagesRecieved: String
+    
+    private let friendMessagesSent: String
+    
+    private let userMessagesSent: String
     
     let invalidPaths: Bool
     
@@ -34,8 +40,10 @@ struct DatabasePath {
         invalidPaths = friendID.isEmpty
         friendDocument = "\(usersCollection)/\(friendID)"
         userDocument = "\(usersCollection)/\(userID)"
-        friendMessages = "\(friendDocument)/\(messagesCollection)"
-        userMessages = "\(userDocument)/\(messagesCollection)"
+        friendMessagesRecieved = "\(friendDocument)/\(messagesReceivedCollection)"
+        userMessagesRecieved = "\(userDocument)/\(messagesReceivedCollection)"
+        friendMessagesSent = "\(friendDocument)/\(messagesSentCollection)"
+        userMessagesSent = "\(userDocument)/\(messagesSentCollection)"
     }
     
     /**
@@ -50,10 +58,14 @@ struct DatabasePath {
             userDocument
         case .friendDocument:
             friendDocument
-        case .userMessages:
-            userMessages
-        case .friendMessages:
-            friendMessages
+        case .userMessagesRecieved:
+            userMessagesRecieved
+        case .friendMessagesRecieved:
+            friendMessagesRecieved
+        case .userMessagesSent:
+            userMessagesSent
+        case .friendMessagesSent:
+            friendMessagesSent
         }
         
     }
@@ -63,8 +75,10 @@ struct DatabasePath {
     enum PathType {
         case userDocument
         case friendDocument
-        case userMessages
-        case friendMessages
+        case userMessagesRecieved
+        case friendMessagesRecieved
+        case userMessagesSent
+        case friendMessagesSent
     }
     
 }

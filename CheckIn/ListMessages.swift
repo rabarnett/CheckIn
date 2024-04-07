@@ -15,10 +15,18 @@ struct ListMessages: View {
         VStack {
             Text(userController.user?.username ?? "ERROR")
             
-            ForEach(userController.messages, id: \.self) { message in
+            ForEach(userController.messages) { message in
                 VStack {
                     Text(message.message)
                     Text(message.timestamp.description)
+                    if(message.response) {
+                        Text("Seen")
+                            .foregroundStyle(.green)
+                    } else {
+                        Button("OK") {
+                            userController.confirmMessage(messageID: message.id)
+                        }
+                    }
                 }
             }
         }

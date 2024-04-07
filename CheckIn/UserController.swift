@@ -43,7 +43,7 @@ final class UserController: DatabaseController {
         guard !path.invalidPaths else { throw AppError.invalidPath }
         print(#function)
         
-        let messagesCollection = database.collection(path.to(.userMessages)).order(by: "timestamp")
+        let messagesCollection = database.collection(path.to(.userMessagesRecieved)).order(by: "timestamp")
         
         messagesCollection.addSnapshotListener {[weak self] querySnapshot, error in
             guard let documents = querySnapshot?.documents else {
@@ -62,10 +62,26 @@ final class UserController: DatabaseController {
     func sendMessage(message: String) {
         print(#function)
         do {
-            try pushData(toCollection: .friendMessages, data: Message(message: message, timestamp: .now, response: false))
+            let time = Date.now
+            let id = UUID()
+            try setData(toDocument: path.to(.friendMessagesRecieved) + "/\(id.uuidString)", data: Message(message: message, timestamp: time, response: false), merge: false)
+            try setData(toDocument: path.to(.userMessagesSent) + "/\(id.uuidString)", data: Message(message: message, timestamp: time, response: false), merge: false)
         } catch {
             print("Error IN \(#function) - \(error)")
         }
+        
+    }
+    
+    func confirmMessage(messageID: String?) {
+        
+        guard let messageID else {
+            print("ERROR IN \(#function) - ID NIL")
+            return
+        }
+        
+        print(path.to(.friendMessagesRecieved) + "/\(messageID)")
+        database.document(path.to(.friendMessagesSent) + "/\(messageID)").setData(["response": true], merge: true)
+        database.document(path.to(.userMessagesRecieved) + "/\(messageID)").setData(["response": true], merge: true)
         
     }
     
